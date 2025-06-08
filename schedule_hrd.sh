@@ -10,7 +10,7 @@ if ! command -v at &> /dev/null; then
 fi
 
 # === Prompt for date and time ===
-read -p "Enter the date (DD-MM-YYYY): " DATE
+read -p "Enter the date (YYYY-MM-DD): " DATE
 read -p "Enter the time (HH:MM): " TIME
 
 # === Validate date and time ===
