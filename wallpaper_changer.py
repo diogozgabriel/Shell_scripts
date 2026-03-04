@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """
 Wallpaper Changer - Troca automática de wallpapers para múltiplos monitores.
-Usa xwallpaper (X11) ou swaybg (Wayland) para definir wallpapers por monitor.
+Usa swww para definir wallpapers por monitor no Hyprland.
 """
 
-import os
 import random
 import subprocess
 import threading
@@ -30,44 +29,25 @@ def get_wallpaper_files(directory):
     )
 
 
-def detect_session_type():
-    """Detecta se está rodando X11 ou Wayland."""
-    session = os.environ.get("XDG_SESSION_TYPE", "").lower()
-    if session == "wayland":
-        return "wayland"
-    if session == "x11":
-        return "x11"
-    if os.environ.get("WAYLAND_DISPLAY"):
-        return "wayland"
-    if os.environ.get("DISPLAY"):
-        return "x11"
-    return "x11"
-
-
-def apply_wallpapers_x11(monitor_wallpapers):
-    """Define wallpapers usando xwallpaper (X11)."""
-    cmd = []
-    for monitor, wallpaper in monitor_wallpapers.items():
-        cmd += ["--output", monitor, "--zoom", str(wallpaper)]
-    subprocess.run(["xwallpaper"] + cmd, check=True)
-
-
-def apply_wallpapers_wayland(monitor_wallpapers):
-    """Define wallpapers usando swaybg (Wayland) via swaymsg/hyprctl."""
-    for monitor, wallpaper in monitor_wallpapers.items():
-        subprocess.run(
-            ["swaymsg", "output", monitor, "bg", str(wallpaper), "fill"],
-            check=False,
-        )
+def ensure_swww_running():
+    """Garante que o daemon swww está rodando."""
+    result = subprocess.run(
+        ["swww", "query"], capture_output=True, text=True
+    )
+    if result.returncode != 0:
+        subprocess.run(["swww-daemon"], start_new_session=True)
+        time.sleep(1)
 
 
 def apply_wallpapers(monitor_wallpapers):
-    """Aplica wallpapers detectando o tipo de sessão."""
-    session = detect_session_type()
-    if session == "wayland":
-        apply_wallpapers_wayland(monitor_wallpapers)
-    else:
-        apply_wallpapers_x11(monitor_wallpapers)
+    """Aplica wallpapers usando swww."""
+    ensure_swww_running()
+    for monitor, wallpaper in monitor_wallpapers.items():
+        subprocess.run(
+            ["swww", "img", "-o", monitor, "--transition-type", "fade",
+             "--transition-duration", "2", str(wallpaper)],
+            check=True,
+        )
 
 
 class WallpaperChangerApp:
@@ -161,7 +141,7 @@ class WallpaperChangerApp:
         except FileNotFoundError:
             messagebox.showerror(
                 "Erro",
-                "Comando não encontrado. Instale xwallpaper (X11) ou swaymsg (Wayland).",
+                "swww não encontrado. Instale com: paru -S swww",
             )
             self._stop_auto()
             return False
