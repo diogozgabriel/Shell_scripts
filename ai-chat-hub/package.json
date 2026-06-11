@@ -1,0 +1,45 @@
+{
+  "name": "ai-chat-hub",
+  "productName": "AI Chat Hub",
+  "version": "1.0.0",
+  "description": "Hub de chats de IA com login web (Claude, ChatGPT, Gemini, Deepseek, innerAI, Copilot, Perplexity)",
+  "main": "main.js",
+  "author": "Diogo Gabriel",
+  "homepage": "https://github.com/diogozgabriel/Shell_scripts",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist:linux": "electron-builder --linux",
+    "dist:win": "electron-builder --win",
+    "dist:mac": "electron-builder --mac"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.diogogabriel.aichathub",
+    "productName": "AI Chat Hub",
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*",
+      "default-services.json"
+    ],
+    "linux": {
+      "target": ["pacman", "AppImage"],
+      "maintainer": "Diogo Gabriel <diogozgabriel@gmail.com>",
+      "synopsis": "Hub de chats de IA",
+      "category": "Network",
+      "icon": "build/icon.png"
+    },
+    "win": {
+      "target": ["nsis"],
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}

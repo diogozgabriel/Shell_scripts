@@ -1,0 +1,34 @@
+{
+  "name": "garuda-toolbox",
+  "productName": "Garuda Toolbox",
+  "version": "1.0.0",
+  "description": "Print que vira texto (OCR), conversor universal de arquivos e baixador de mídia",
+  "main": "main.js",
+  "author": "Diogo Gabriel",
+  "homepage": "https://github.com/diogozgabriel/Shell_scripts",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist:linux": "electron-builder --linux"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.diogogabriel.garudatoolbox",
+    "productName": "Garuda Toolbox",
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*"
+    ],
+    "linux": {
+      "target": ["pacman"],
+      "category": "Utility",
+      "maintainer": "Diogo Gabriel <diogozgabriel@gmail.com>",
+      "synopsis": "OCR de prints, conversor de arquivos e baixador de mídia",
+      "icon": "build/icon.png"
+    }
+  }
+}

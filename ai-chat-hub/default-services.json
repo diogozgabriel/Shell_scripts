@@ -1,0 +1,23 @@
+{
+  "services": [
+    { "id": "claude",     "name": "Claude",     "url": "https://claude.ai",            "icon": "🟠", "enabled": true },
+    { "id": "chatgpt",    "name": "ChatGPT",    "url": "https://chatgpt.com",          "icon": "🟢", "enabled": true },
+    { "id": "gemini",     "name": "Gemini",     "url": "https://gemini.google.com",    "icon": "🔷", "enabled": true },
+    { "id": "deepseek",   "name": "Deepseek",   "url": "https://chat.deepseek.com",    "icon": "🐳", "enabled": true },
+    { "id": "innerai",    "name": "innerAI",    "url": "https://app.innerai.com",      "icon": "🟣", "enabled": true },
+    { "id": "copilot",    "name": "Copilot",    "url": "https://copilot.microsoft.com","icon": "🟦", "enabled": true },
+    { "id": "perplexity", "name": "Perplexity", "url": "https://www.perplexity.ai",    "icon": "🔍", "enabled": true }
+  ],
+  "settings": {
+    "theme": "dark",
+    "sidebarWidth": 200,
+    "sidebarCompact": false,
+    "zoomFactor": 1.0,
+    "enterToSend": true,
+    "spellcheck": true,
+    "spellcheckLanguages": ["pt-BR", "en-US"],
+    "startupService": "claude",
+    "openLinksExternally": true,
+    "userAgent": ""
+  }
+}
