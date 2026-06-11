@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'" />
+  <title>AI Chat Hub</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <aside id="sidebar">
+      <div id="service-list"></div>
+      <div id="sidebar-footer">
+        <button id="btn-reload" title="Recarregar serviço atual (Ctrl+R)">↻</button>
+        <button id="btn-settings" title="Configurações (Ctrl+,)">⚙</button>
+      </div>
+    </aside>
+    <main id="views"></main>
+  </div>
+
+  <dialog id="settings-dialog">
+    <h2>Configurações</h2>
+
+    <section>
+      <h3>Geral</h3>
+      <label>Tema
+        <select id="set-theme">
+          <option value="dark">Escuro</option>
+          <option value="light">Claro</option>
+        </select>
+      </label>
+      <label>Zoom dos chats
+        <input id="set-zoom" type="number" min="0.5" max="2" step="0.1" />
+      </label>
+      <label class="check"><input id="set-enter" type="checkbox" /> Enter envia a mensagem (desmarcado: Enter cria nova linha)</label>
+      <label class="check"><input id="set-spell" type="checkbox" /> Correção ortográfica (pt-BR / en-US)</label>
+      <label class="check"><input id="set-external" type="checkbox" /> Abrir links comuns no navegador externo</label>
+      <label class="check"><input id="set-compact" type="checkbox" /> Barra lateral compacta (só ícones)</label>
+      <label>Serviço inicial
+        <select id="set-startup"></select>
+      </label>
+      <label>User-Agent personalizado (vazio = padrão Chrome)
+        <input id="set-ua" type="text" placeholder="padrão" />
+      </label>
+    </section>
+
+    <section>
+      <h3>Serviços</h3>
+      <p class="hint">Arraste pela alça ⠿ não é suportado; use ↑↓ para reordenar. "Sair" apaga o login salvo do serviço.</p>
+      <div id="svc-editor"></div>
+      <button id="btn-add-svc">+ Adicionar serviço</button>
+    </section>
+
+    <footer>
+      <button id="btn-reset">Restaurar padrões</button>
+      <span class="spacer"></span>
+      <button id="btn-cancel">Cancelar</button>
+      <button id="btn-save" class="primary">Salvar</button>
+    </footer>
+  </dialog>
+  <script src="renderer.js"></script>
+</body>
+</html>
