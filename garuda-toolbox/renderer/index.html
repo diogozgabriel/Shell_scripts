@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'" />
+  <title>Garuda Toolbox</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav id="tabs">
+    <button class="tab active" data-tab="ocr">📸 Print → Texto</button>
+    <button class="tab" data-tab="convert">🎬 Conversor</button>
+    <button class="tab" data-tab="download">⬇️ Baixador</button>
+  </nav>
+
+  <!-- ============ OCR ============ -->
+  <section id="tab-ocr" class="panel active">
+    <div class="toolbar">
+      <button id="ocr-capture" class="primary big">📸 Capturar área da tela</button>
+      <button id="ocr-open">Abrir imagem…</button>
+    </div>
+    <p class="hint" id="ocr-hint">Dica: crie um atalho global no KDE (Configurações → Atalhos) executando
+      <code>garuda-toolbox --ocr</code> para capturar de qualquer lugar. Você também pode arrastar uma imagem aqui.</p>
+    <div id="ocr-warn" class="warn hidden"></div>
+    <textarea id="ocr-text" placeholder="O texto reconhecido aparece aqui…" spellcheck="false"></textarea>
+    <div class="toolbar">
+      <button id="ocr-copy">📋 Copiar</button>
+      <button id="ocr-ai">🤖 Copiar e abrir AI Chat Hub</button>
+      <span id="ocr-status" class="status"></span>
+    </div>
+  </section>
+
+  <!-- ============ Conversor ============ -->
+  <section id="tab-convert" class="panel">
+    <div id="dropzone">
+      <p>Arraste arquivos aqui<br /><span class="muted">vídeo, áudio ou imagem</span></p>
+      <button id="conv-pick">ou escolha arquivos…</button>
+    </div>
+    <div id="conv-warn" class="warn hidden"></div>
+    <div id="conv-queue" class="queue"></div>
+  </section>
+
+  <!-- ============ Baixador ============ -->
+  <section id="tab-download" class="panel">
+    <div class="dl-form">
+      <input id="dl-url" type="text" placeholder="Cole o link do vídeo (YouTube e centenas de outros sites)…" />
+      <div class="dl-row">
+        <select id="dl-mode">
+          <option value="best">Melhor qualidade</option>
+          <option value="1080">Até 1080p</option>
+          <option value="720">Até 720p</option>
+          <option value="audio">Só áudio (MP3)</option>
+        </select>
+        <label class="check"><input id="dl-playlist" type="checkbox" /> Playlist completa</label>
+        <button id="dl-dir-btn" title="Pasta de destino">📁 <span id="dl-dir-label">Downloads</span></button>
+        <button id="dl-start" class="primary">⬇️ Baixar</button>
+      </div>
+    </div>
+    <div id="dl-warn" class="warn hidden"></div>
+    <div id="dl-queue" class="queue"></div>
+  </section>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
