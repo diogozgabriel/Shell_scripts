@@ -4,35 +4,35 @@
    de min-width conforme sua tela / preferência. */
 
 #window {
-  min-width: 900px;
+  min-width: 1170px;
 }
 
 #box {
-  min-width: 900px;
+  min-width: 1170px;
 }
 
 #search {
-  min-width: 860px;
+  min-width: 1120px;
 }
 
 /* Lista principal de resultados */
 #scroll,
 #list {
-  min-width: 860px;
+  min-width: 1120px;
 }
 
 #item-box {
-  min-width: 800px;
+  min-width: 1040px;
 }
 
 /* Painel lateral com os ícones/nomes dos providers (apps, calc, files...) */
 #sidebar,
 #providerlist,
 #typeahead {
-  min-width: 220px;
+  min-width: 290px;
 }
 
 /* Painel de preview (arquivos, clipboard, etc.) */
 #preview {
-  min-width: 320px;
+  min-width: 420px;
 }
