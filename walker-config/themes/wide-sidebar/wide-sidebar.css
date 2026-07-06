@@ -1,0 +1,38 @@
+/* Walker — override de largura para os painéis laterais.
+   Pensado para ser carregado DEPOIS do seu tema atual (via `theme_base`),
+   assim só estas regras de largura entram em vigor. Ajuste os valores
+   de min-width conforme sua tela / preferência. */
+
+#window {
+  min-width: 900px;
+}
+
+#box {
+  min-width: 900px;
+}
+
+#search {
+  min-width: 860px;
+}
+
+/* Lista principal de resultados */
+#scroll,
+#list {
+  min-width: 860px;
+}
+
+#item-box {
+  min-width: 800px;
+}
+
+/* Painel lateral com os ícones/nomes dos providers (apps, calc, files...) */
+#sidebar,
+#providerlist,
+#typeahead {
+  min-width: 220px;
+}
+
+/* Painel de preview (arquivos, clipboard, etc.) */
+#preview {
+  min-width: 320px;
+}
